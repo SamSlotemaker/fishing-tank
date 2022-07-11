@@ -5,13 +5,13 @@ import { Fish } from "../../components";
 
 interface iProps {
   fishArray: Array<iFish>;
-  catchFish: any;
+  catchFishRod: any;
   setSwimmingFishes: any;
 }
 
 const Fishes: React.FC<iProps> = ({
   fishArray,
-  catchFish,
+  catchFishRod,
   setSwimmingFishes,
 }) => {
   const [isFishing, setIsFishing] = useState(false);
@@ -23,7 +23,7 @@ const Fishes: React.FC<iProps> = ({
           <Fish
             fish={fish}
             key={fish.ids.uniqueId}
-            catchFish={catchFish}
+            catchFishRod={catchFishRod}
             setSwimmingFishes={setSwimmingFishes}
             setIsFishing={setIsFishing}
           />

@@ -3,7 +3,7 @@ import "./fish.scss";
 import { iFish } from "../../../core/models/fish";
 interface iProps {
   fish: iFish;
-  catchFish: any;
+  catchFishRod: any;
   setSwimmingFishes: any;
   setIsFishing: (state: boolean) => void;
 }
@@ -14,7 +14,7 @@ const getRandomNumber = (min, max) => {
 
 const Fish: React.FC<iProps> = ({
   fish,
-  catchFish,
+  catchFishRod,
   setSwimmingFishes,
   setIsFishing,
 }) => {
@@ -27,18 +27,17 @@ const Fish: React.FC<iProps> = ({
   const handleCatchFish = (direction) => {
     setTimeout(() => {
       if (!fishRef.current) return;
-      const { x, width, y, height } = fishRef.current.getBoundingClientRect();
-      let xOffset;
+      const { x, y, width, height } = fishRef.current.getBoundingClientRect();
+      let xOffset = x;
+      const yOffset = y + height * 2;
 
       if (direction === "left") {
-        xOffset = x;
         fishRef.current.style.setProperty("--scale", `1`);
       } else {
-        xOffset = x + width;
         fishRef.current.style.setProperty("--scale", `-1`);
+        xOffset = x + width;
       }
 
-      const yOffset = y + height * 2;
       fishRef.current.style.setProperty("--xAnimated", `${xOffset}px`);
       fishRef.current.style.setProperty("--yAnimated", `-${yOffset}px`);
       fishRef.current.classList.add("catchFish");
@@ -47,28 +46,26 @@ const Fish: React.FC<iProps> = ({
 
   const handleClick = (e) => {
     setIsFishing(true);
-    let { x: firstXMeasure } = e.target.getBoundingClientRect();
-    //check fish direction after 100ms
-    setTimeout(() => {
-      const { x, width, y, height } = e.target.getBoundingClientRect();
-      let secondXMeasure = x;
-      let xOffset;
-      let direction;
-      if (firstXMeasure > secondXMeasure) {
-        direction = "left";
-        //left
-        const swimmingOffset = (window.innerWidth / animationSpeed) * 2;
-        xOffset = x - swimmingOffset;
-      } else {
-        direction = "right";
-        //right
-        const swimmingOffset = (window.innerWidth / animationSpeed) * 2 + width;
-        xOffset = x + swimmingOffset;
-      }
-      const yOffset = y + height / 2;
-      catchFish(xOffset, yOffset, direction);
-      handleCatchFish(direction);
-    }, 100);
+    const fish = e.target;
+    const fishBox = fish.getBoundingClientRect();
+    //check fish direction
+    const scale = getComputedStyle(fish).getPropertyValue("--r");
+
+    let xOffset;
+    let direction;
+    if (parseInt(scale) === 1) {
+      direction = "left";
+      const swimmingOffset = (window.innerWidth / animationSpeed) * 2;
+      xOffset = fishBox.x - swimmingOffset;
+    } else {
+      direction = "right";
+      const swimmingOffset =
+        (window.innerWidth / animationSpeed) * 2 + fishBox.width;
+      xOffset = fishBox.x + swimmingOffset;
+    }
+
+    handleCatchFish(direction);
+    catchFishRod(xOffset, fishBox, direction);
   };
 
   const handleCaughtFish = () => {

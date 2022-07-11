@@ -87,7 +87,7 @@
   }
 
   &.catchFish {
-    animation: catch 2s linear;
+    animation: catch 1s linear alternate 2;
   }
 }
 
@@ -96,12 +96,8 @@
     transform: translateY(calc(var(--size) * -1 - 200px))
       scaleX(var(--scale, 1));
   }
-  50% {
-    transform: translateY(var(--yOffset)) scaleX(var(--scale, 1));
-  }
   100% {
-    transform: translateY(calc(var(--size) * -1 - 200px))
-      scaleX(var(--scale, 1));
+    transform: translateY(var(--yOffset)) scaleX(var(--scale, 1));
   }
 }
 

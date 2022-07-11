@@ -11,6 +11,7 @@ const HomeView: React.FC = () => {
   const [error, setError] = useState(false);
   const [openShop, setOpenShop] = useState(true);
   const fishingRod = useRef<HTMLDivElement | null>(null);
+  const seaRef = useRef<HTMLDivElement | null>(null);
 
   const getData = async (url) => {
     const data = await fetch(url);
@@ -27,7 +28,8 @@ const HomeView: React.FC = () => {
     }
   }, []);
 
-  const catchFish = (x, y, direction) => {
+  const catchFishRod = (x, fish, direction) => {
+    const yOffset = fish.y + fish.height / 2;
     if (!fishingRod.current) return;
     fishingRod.current.classList.add("catchFish");
     if (direction === "left") {
@@ -36,7 +38,7 @@ const HomeView: React.FC = () => {
       fishingRod.current.style.setProperty("--scale", `1`);
     }
     fishingRod.current.style.setProperty("--xOffset", `${x}px`);
-    fishingRod.current.style.setProperty("--yOffset", `${y}px`);
+    fishingRod.current.style.setProperty("--yOffset", `${yOffset}px`);
   };
 
   useEffect(() => {
@@ -60,7 +62,7 @@ const HomeView: React.FC = () => {
         />
       )}
 
-      <section className="sea">
+      <section className="sea" ref={seaRef}>
         <div className="boat"></div>
         <div
           className="fishingRod"
@@ -73,7 +75,7 @@ const HomeView: React.FC = () => {
         <FishTank>
           {swimmingFishes && (
             <Fishes
-              catchFish={catchFish}
+              catchFishRod={catchFishRod}
               fishArray={swimmingFishes}
               setSwimmingFishes={setSwimmingFishes}
             />
