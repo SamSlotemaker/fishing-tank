@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/fishing-tank/static/css/main.a38a24a1.css",
+    "main.js": "/fishing-tank/static/js/main.da7bcc95.js",
+    "static/media/coral2.png": "/fishing-tank/static/media/coral2.611015354b2a8b1297a5.png",
+    "static/media/coral1.png": "/fishing-tank/static/media/coral1.1aa98ee84ea60a519539.png",
+    "static/media/coral3.png": "/fishing-tank/static/media/coral3.195caacca839f1e4c7de.png",
+    "static/media/submarine.png": "/fishing-tank/static/media/submarine.a581002e64be47d0fba3.png",
+    "static/media/hook.png": "/fishing-tank/static/media/hook.ab49bc8c73ef8f91be6c.png",
+    "index.html": "/fishing-tank/index.html",
+    "main.a38a24a1.css.map": "/fishing-tank/static/css/main.a38a24a1.css.map",
+    "main.da7bcc95.js.map": "/fishing-tank/static/js/main.da7bcc95.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a38a24a1.css",
+    "static/js/main.da7bcc95.js"
+  ]
+}
