@@ -1,0 +1,47 @@
+.fish {
+  --scale: 1;
+  --yOffset: 40%;
+  --animationDelay: 0s;
+  --animationSpeed: 25s;
+  transform-origin: center left;
+  //   left: 40%;
+  cursor: pointer;
+  position: absolute;
+  top: var(--yOffset);
+  display: inline-block;
+  animation: swim var(--animationSpeed) var(--animationDelay) linear infinite;
+
+  &.catchFish {
+    animation: gotCaught 1s linear forwards;
+  }
+}
+
+@keyframes gotCaught {
+  0% {
+    transform: translateX(var(--xAnimated)) translateY(0px) scaleX(var(--scale))
+      rotate(0);
+  }
+  50% {
+    transform: translateX(var(--xAnimated))
+      translateY(calc(var(--yAnimated) / 2)) scaleX(var(--scale)) rotate(45deg);
+  }
+  100% {
+    transform: translateX(var(--xAnimated)) translateY(var(--yAnimated))
+      scaleX(var(--scale)) rotate(45deg);
+  }
+}
+
+@keyframes swim {
+  0% {
+    transform: translateX(110vw) scaleX(1);
+  }
+  50% {
+    transform: translateX(-10vw) scaleX(1);
+  }
+  51% {
+    transform: translateX(-10vw) scaleX(-1);
+  }
+  100% {
+    transform: translateX(110vw) scaleX(-1);
+  }
+}

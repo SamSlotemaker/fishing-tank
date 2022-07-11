@@ -1,0 +1,47 @@
+.shopFish {
+  background-color: #009688;
+  display: block;
+  margin: auto;
+  // margin-top: 2em;
+  padding: 2em;
+  border-radius: 2em;
+
+  width: 100%;
+
+  .shopFishHeading {
+    text-transform: capitalize;
+    text-align: center;
+  }
+
+  .shopFishImage {
+    margin: auto;
+    display: block;
+  }
+
+  .shopFishForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      margin: 0 1rem;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    button {
+      background-color: #474747;
+      color: white;
+      width: 3rem;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 2em;
+      line-height: 1em;
+      height: 3rem;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+  }
+}

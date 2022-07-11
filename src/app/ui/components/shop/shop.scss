@@ -1,0 +1,118 @@
+.shop {
+  --width: 25vw;
+  --resizeButtonWidth: 25px;
+  color: white;
+
+  &::before {
+    content: "";
+    display: block;
+    position: fixed;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+  }
+
+  position: fixed;
+  left: 0;
+  z-index: 10000;
+  width: clamp(270px, calc(var(--width) - var(--resizeButtonWidth) / 2), 600px);
+  height: 100vh;
+  transform: translateX(-100%);
+  transition: transform 0.5s ease-in-out;
+
+  .shopToggle {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: orange;
+    border-radius: 1em;
+    display: block;
+    cursor: pointer;
+    right: -75px;
+    top: 25px;
+    border: 3px solid #fff;
+
+    img {
+      width: 100%;
+      transition: transform 0.5s ease-in-out;
+      transform: translateX(2px) rotate(180deg);
+    }
+  }
+
+  .resizeButton {
+    opacity: 0;
+    pointer-events: none;
+    background-color: white;
+    width: var(--resizeButtonWidth);
+    height: 5em;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    border-radius: 0 3em 3em 0;
+    transition: all 0.5s ease-in-out;
+
+    transform: translate(100%, -50%);
+    cursor: pointer;
+    z-index: -1;
+    border: none;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 3px;
+      height: 50%;
+      top: 50%;
+      border-radius: 500em;
+      left: 40%;
+      transform: translate(-50%, -50%);
+      background-color: orange;
+    }
+  }
+
+  h2 {
+    margin: 2em;
+    text-align: center;
+  }
+
+  .shopFishListContainer {
+    height: 100%;
+    cursor: auto;
+    overflow-y: scroll;
+
+    /* width */
+    &::-webkit-scrollbar {
+      width: 10px;
+      cursor: pointer;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #f1f1f17d;
+      filter: blur(10px);
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      cursor: pointer;
+      background: orange;
+      border-radius: 500em;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      cursor: pointer;
+      background: rgb(255, 106, 0);
+    }
+  }
+  .shopFishList {
+    display: grid;
+    width: 80%;
+    margin: auto;
+    list-style-type: none;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 2em;
+  }
+}
